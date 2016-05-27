@@ -52,6 +52,9 @@ class App
    system("java -jar "+$p_apktool+" d "+@app_file+" "+@app_workspace+"/2_apktool/")  ## apktool
    system($p_dex2jar+" "+@app_file)  ## dex2jar
    system($p_unzip+" "+@app_workspace+"/"+(time.to_i).to_s+"_"+@app_package.strip+"_dex2jar.jar"+" -d "+@app_workspace+"/3_dex2jar/")  ## Unzip
+   system($p_jad+" -o -r -sjava -d"+@app_workspace+"/4_jad/ 3_dex2jar/**/*.class")  ## dex2jar
+   puts $p_jad+" -o -r -sjava -d"+@app_workspace+"/4_jad/ "+@app_workspace+"3_dex2jar/**/*.class"
+# jad -o -r -sjava -d./4_jad 3_dex2jar/**/*.class
  end
  def returnFile()
    puts @app_file
@@ -87,6 +90,7 @@ else
     app[i].scan_info()
     app[i].returnFile()
     app[i].make_work()
+    puts "[FINISH] :: "+app[i].getpackage()
     i+=1
   end
 end
