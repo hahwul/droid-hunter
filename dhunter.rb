@@ -1,4 +1,5 @@
-require File.dirname(__FILE__)+"/config.rb"  #Include Config File
+require File.dirname(__FILE__)+"/config/config.rb"  #Include Config File
+require File.dirname(__FILE__)+"/src/sscan.rb"  #Include Config File
 
 def banner()
 puts "Droid::Hunter"
@@ -18,6 +19,7 @@ class App
    @app_main = ""
    @app_package = "" 
    @app_workspace = ""
+   @app_strlist = Array.new()
  end
  def scan_info()  #Scanning App default information
    IO.popen($p_aapt+" dump badging "+@app_file, 'r') do |pipe|
@@ -69,6 +71,9 @@ class App
  def getworkspace()
    return @app_workspace
  end
+ def getstrlist_addr()
+   return @app_strlist
+ end
 end
 # ==================================================
 banner()
@@ -87,9 +92,11 @@ else
   end
   i=0
   while(i<ARGV.size)
-    app[i].scan_info()
+    app[i].scan_info() # Scan App Default Info
     app[i].returnFile()
-    app[i].make_work()
+    app[i].make_work() # Decompile + Unzip
+    sscan(app[i].getworkspace+"/2_apktool/",app[i].getstrlist_addr()) # Scan smali code
+    sscan(app[i].getworkspace+"/4_jad/",app[i].getstrlist_addr()) # Scan java code
     puts "[FINISH] :: "+app[i].getpackage()
     i+=1
   end
