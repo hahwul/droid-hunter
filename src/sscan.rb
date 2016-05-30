@@ -13,10 +13,8 @@ def sscan(path,array)
  type = fline[0..index-1]
  pattern = fline[index+1..-1]
  stdout, stdeerr, status = Open3.capture3($p_grep+" '"+pattern.strip!+"' "+path+" -i -R")
- array.push(stdout)
+ array[0].push(type)
+ array[1].push(stdout)
  end # file open
 end
 
-#test = Array.new()
-#sscan("/home/noon/Noon/LAB/droid-hunter/1464576961_com.metasploit.stage/2_apktool/",test)
-#puts test

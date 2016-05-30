@@ -26,7 +26,10 @@ class App
    @app_main = ""
    @app_package = "" 
    @app_workspace = ""
-   @app_strlist = Array.new()
+   @app_strlist = Array.new(2)
+   for i in (0..2)
+     @app_strlist[i] = Array.new()
+   end
  end
  def scan_info()  #Scanning App default information
    IO.popen($p_aapt+" dump badging "+@app_file, 'r') do |pipe|
@@ -81,6 +84,9 @@ class App
  def getstrlist_addr()
    return @app_strlist
  end
+ def test()
+   puts @app_strlist
+ end
 end
 # ==================================================
 banner()
@@ -104,6 +110,7 @@ else
     app[i].make_work() # Decompile + Unzip
     sscan(app[i].getworkspace+"/2_apktool/",app[i].getstrlist_addr()) # Scan smali code
     sscan(app[i].getworkspace+"/4_jad/",app[i].getstrlist_addr()) # Scan java code
+    app[i].test()
     puts "[FINISH] :: "+app[i].getpackage()
     i+=1
   end
