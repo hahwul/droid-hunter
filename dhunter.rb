@@ -8,7 +8,14 @@ puts "================================="
 end
 
 def help()
-  puts "Helo"
+  puts "Usage: ruby dhunter.rb [APK]"
+  puts "   => dhunter 123.apk"
+  puts "   => dhunter 123.apk aaa.apk test.apk hwul.apk"
+  puts "Runable"
+  puts "   1. Unzip apk"
+  puts "   2. Smali code decompile apk"
+  puts "   3. Dex2jar decompile apk"
+  puts "   4. Java code decompile apk"
 end
 # ==================================================
 class App
@@ -102,8 +109,6 @@ else
   end
 end
 end
-
-
 
 
 
