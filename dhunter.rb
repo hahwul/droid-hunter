@@ -1,5 +1,6 @@
 require File.dirname(__FILE__)+"/config/config.rb"  #Include Config File
-require File.dirname(__FILE__)+"/src/sscan.rb"  #Include Config File
+require File.dirname(__FILE__)+"/src/sscan.rb"  #Include Scan
+require File.dirname(__FILE__)+"/src/generate_report.rb"  #Include Report
 
 def banner()
 puts "Droid::Hunter"
