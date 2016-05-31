@@ -12,5 +12,5 @@ $p_apktool = File.dirname(__FILE__)+"/../ex_tool/apktool/apktool_2.0.0rc3.jar"
 $p_jad = File.dirname(__FILE__)+"/../ex_tool/jad/jad"
 $p_grep = "/bin/grep"
 $p_unzip = "/usr/bin/unzip"
-$p_sfilter = "../string_filter"
+$p_sfilter = File.dirname(__FILE__)+"/../string_filter"
 
