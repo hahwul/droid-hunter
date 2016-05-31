@@ -54,17 +54,17 @@ class App
    time = Time.new
    @app_workspace = Dir.pwd+"/"+(time.to_i).to_s+"_"+@app_package
    @app_workspace = @app_workspace.strip!
+   @app_time = (time.to_i).to_s
  end
  def make_work() # Mkdir + Apk Decompile + BakSmiling
-   time = Time.new
    Dir.mkdir(@app_workspace)
-   system("cp "+@app_file+" "+@app_workspace+"/"+(time.to_i).to_s+"_"+@app_package.strip+".apk")
+   system("cp "+@app_file+" "+@app_workspace+"/"+@app_time+"_"+@app_package.strip+".apk")
    Dir.chdir(@app_workspace)
-   @app_file = Dir.pwd+"/"+(time.to_i).to_s+"_"+@app_package.strip+".apk"
+   @app_file = Dir.pwd+"/"+@app_time+"_"+@app_package.strip+".apk"
    system($p_unzip+" "+@app_file+" -d "+@app_workspace+"/1_unzip/")  ## Unzip
    system("java -jar "+$p_apktool+" d "+@app_file+" "+@app_workspace+"/2_apktool/")  ## apktool
    system($p_dex2jar+" "+@app_file)  ## dex2jar
-   system($p_unzip+" "+@app_workspace+"/"+(time.to_i).to_s+"_"+@app_package.strip+"_dex2jar.jar"+" -d "+@app_workspace+"/3_dex2jar/")  ## Unzip
+   system($p_unzip+" "+@app_workspace+"/"+@app_time+"_"+@app_package.strip+"_dex2jar.jar"+" -d "+@app_workspace+"/3_dex2jar/")  ## Unzip
    system($p_jad+" -o -r -sjava -d"+@app_workspace+"/4_jad/ 3_dex2jar/**/*.class")  ## dex2jar
    puts $p_jad+" -o -r -sjava -d"+@app_workspace+"/4_jad/ "+@app_workspace+"3_dex2jar/**/*.class"
 # jad -o -r -sjava -d./4_jad 3_dex2jar/**/*.class
@@ -75,6 +75,18 @@ class App
    puts @app_perm
    puts @app_main
    puts @app_workspace
+ end
+ def getdirectory()
+   return @app_time + "_" + @app_package.strip
+ end
+ def getperm()
+   return @app_perm
+ end
+ def getmain()
+   return @app_main
+ end
+ def getfile()
+   return @app_file
  end
  def getpackage()
    return @app_package
@@ -111,7 +123,8 @@ else
     app[i].make_work() # Decompile + Unzip
     sscan(app[i].getworkspace+"/2_apktool/",app[i].getstrlist_addr()) # Scan smali code
     sscan(app[i].getworkspace+"/4_jad/",app[i].getstrlist_addr()) # Scan java code
-    app[i].test()
+    Dir.chdir("../")
+    generate_report(app[i])
     puts "[FINISH] :: "+app[i].getpackage()
     i+=1
   end
