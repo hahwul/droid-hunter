@@ -33,14 +33,14 @@ C. Run DROID-HUNTER<br>
 
 ## 3. How to Use?
             
-Usage: ruby dhunter.rb [APK]
-   => dhunter 123.apk
-   => dhunter 123.apk aaa.apk test.apk hwul.apk
-Runable
-   1. Unzip apk
-   2. Smali code decompile apk
-   3. Dex2jar decompile apk
-   4. Java code decompile apk
+Usage: ruby dhunter.rb [APK]<br>
+   => dhunter 123.apk<br>
+   => dhunter 123.apk aaa.apk test.apk hwul.apk<br>
+Runable<br>
+   1. Unzip apk<br>
+   2. Smali code decompile apk<br>
+   3. Dex2jar decompile apk<br>
+   4. Java code decompile apk<br>
 
 ## 4. Support
 Contact hahwul@gmail.com
