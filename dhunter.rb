@@ -3,9 +3,16 @@ require File.dirname(__FILE__)+"/src/sscan.rb"  #Include Scan
 require File.dirname(__FILE__)+"/src/generate_report.rb"  #Include Report
 
 def banner()
-puts "Droid::Hunter"
-puts "Code by hawul"
-puts "================================="
+puts "      .---.        .-----------"
+puts "     /     \\  __  /    ------"
+puts "    / /     \\(  )/    -----     ╔╦╗╦═╗╔═╗╦╔╦╗   ╦ ╦╦ ╦╔╗╔╔╦╗╔═╗╦═╗"
+puts "   //////   ' \\/ `   ---         ║║╠╦╝║ ║║ ║║───╠═╣║ ║║║║ ║ ║╣ ╠╦╝"
+puts "  //// / // :    : ---          ═╩╝╩╚═╚═╝╩═╩╝   ╩ ╩╚═╝╝╚╝ ╩ ╚═╝╩╚═"
+puts " // /   /  /`    '--                         By HaHwul" 
+puts "//          //..\\\\                         www.hahwul.com"
+puts "       ====UU====UU====         https://github.com/hahwul/droid-hunter"
+puts "           '//||\\\\`"
+puts "             ''``"
 end
 
 def help()
