@@ -1,1 +1,7 @@
-Method:getMethod
+Key:SecretKeySpec
+Key:KeyGenerator
+Key:Base64.encodeToString
+File:writeFile
+File:makeFile
+File:makeDirectory
+File:copyFile
