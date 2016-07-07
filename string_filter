@@ -1,7 +1,10 @@
-Key:SecretKeySpec
-Key:KeyGenerator
-Key:Base64.encodeToString
-File:writeFile
-File:makeFile
-File:makeDirectory
-File:copyFile
+Key-SecretKeySpec:SecretKeySpec
+Key-Base64:Base64.encodeToString
+Key-Base64:Base64.Base64InputStream
+Key-KeyGenerator:KeyGenerator.getInstance
+File-writeFile:writeFile
+File-makeFile:makeFile
+File-makeDirectory:makeDirectory
+File-copyFile:copyFile
+Service-startService:startService
+Service-stopService:stopService

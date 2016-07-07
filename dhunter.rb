@@ -17,13 +17,15 @@ end
 
 def help()
   puts "Usage: ruby dhunter.rb [APK]"
-  puts "   => dhunter 123.apk"
-  puts "   => dhunter 123.apk aaa.apk test.apk hwul.apk"
-  puts "Runable"
-  puts "   1. Unzip apk"
-  puts "   2. Smali code decompile apk"
-  puts "   3. Dex2jar decompile apk"
-  puts "   4. Java code decompile apk"
+  puts "Command"
+  puts "-a, --apk : Analysis android APK file."
+  puts "-p, --pentest : Penetration testing Device"
+  puts " - APK Analysis"
+  puts "   => dhunter -a 123.apk[apk file]"
+  puts "   => dhunter --apk 123.apk aaa.apk test.apk hwul.apk"
+  puts " - Pentest Android"
+  puts "   => dhunter -p device[device code]"
+  puts "   => dhunter --pentest device"
 end
 # ==================================================
 class App
@@ -110,21 +112,21 @@ class App
 end
 # ==================================================
 banner()
-if(ARGV.size == 0)
+if(ARGV.size < 2)
   help()
   exit()
 else if(ARGV[0] == "-h" or ARGV[0] == "--help")
   help()
   exit()
-else
-  i=0
+else if(ARGV[0] == "-a" or ARGV[0] == "--apk")
+  i=1
   app = Array.new
-  while(i<ARGV.size)
-    app.push(App.new(ARGV[0]))
+  while(i<=ARGV.size-1)
+    app.push(App.new(ARGV[i]))
     i+=1
   end
   i=0
-  while(i<ARGV.size)
+  while(i<ARGV.size-1)
     app[i].scan_info() # Scan App Default Info
     app[i].returnFile()
     app[i].make_work() # Decompile + Unzip
@@ -135,13 +137,13 @@ else
     puts "[FINISH] :: "+app[i].getpackage()
     i+=1
   end
+else if(ARGV[0] == "-p" or ARGV[0] == "--pentest")
+  puts "Pentest Module"
+else
+  puts "Not supported commmand"
 end
 end
-
-
-
-
-
-
+end
+end
 
 
