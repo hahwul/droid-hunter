@@ -13,8 +13,10 @@ def sscan(path,array)
  type = fline[0..index-1]
  pattern = fline[index+1..-1]
  stdout, stdeerr, status = Open3.capture3($p_grep+" '"+pattern.strip!+"' "+path+" -i -R")
+ if(stdout.size !=0)
  array[0].push(type)
  array[1].push(stdout)
+ end
  end # file open
 end
 
