@@ -15,11 +15,13 @@ ________________________________________________
 Android application vulnerability analysis tool<br>
 <br>
 A. Support<br>
-> App Info Check<br>
-> Decompile Android App<br>
+> App info check<br>
+> Baksmaling android app<br>
+> Decompile android app<br>
+> Extract class file<br>
+> Extract java code<br>
 > Pattern base Information Leakage<br>
 
- 
 ## 2. How to Install?
 A. Download(clone) & Unpack DROID-HUNTER
 > git clone https://github.com/hahwul/droid-hunter.git<br>
@@ -27,20 +29,24 @@ A. Download(clone) & Unpack DROID-HUNTER
 
 B. Install Ruby GEM<br>
 > gem install html-table<br>
+> gem install colorize<br>
 
 C. Run DROID-HUNTER<br>
-> ruby dhunter
+> ruby dhunter.rb
 
 ## 3. How to Use?
-            
-Usage: ruby dhunter.rb [APK]<br>
-   => dhunter 123.apk<br>
-   => dhunter 123.apk aaa.apk test.apk hwul.apk<br>
-Runable<br>
-   1. Unzip apk<br>
-   2. Smali code decompile apk<br>
-   3. Dex2jar decompile apk<br>
-   4. Java code decompile apk<br>
+
+    Usage: ruby dhunter.rb [APK]
+    Command
+    -a, --apk : Analysis android APK file.
+    -p, --pentest : Penetration testing Device
+     - APK Analysis
+       => dhunter -a 123.apk[apk file]
+       => dhunter --apk 123.apk aaa.apk test.apk hwul.apk
+     - Pentest Android
+       => dhunter -p device[device code]
+       => dhunter --pentest device
+
 
 ## 4. Support
 Contact hahwul@gmail.com
