@@ -12,8 +12,8 @@
 ________________________________________________
 # DROID-HUNTER
 ## 1. DROID-HUNTER
-A) Android application vulnerability analysis tool<br>
-B) Android device pentest tool<br>
+Android application vulnerability analysis and Android pentest tool<br>
+
 <br>
 A. Support<br>
 > App info check<br>
