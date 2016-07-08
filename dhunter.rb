@@ -67,16 +67,22 @@ class App
  end
  def make_work() # Mkdir + Apk Decompile + BakSmiling
    Dir.mkdir(@app_workspace)
+   puts " --- Copy File"
    system("cp "+@app_file+" "+@app_workspace+"/"+@app_time+"_"+@app_package.strip+".apk")
+   puts " --- Change workspace"
    Dir.chdir(@app_workspace)
+   puts " --- Rename APK"
    @app_file = Dir.pwd+"/"+@app_time+"_"+@app_package.strip+".apk"
-   system($p_unzip+" "+@app_file+" -d "+@app_workspace+"/1_unzip/")  ## Unzip
-   system("java -jar "+$p_apktool+" d "+@app_file+" "+@app_workspace+"/2_apktool/")  ## apktool
-   system($p_dex2jar+" "+@app_file)  ## dex2jar
-   system($p_unzip+" "+@app_workspace+"/"+@app_time+"_"+@app_package.strip+"_dex2jar.jar"+" -d "+@app_workspace+"/3_dex2jar/")  ## Unzip
-   system($p_jad+" -o -r -sjava -d"+@app_workspace+"/4_jad/ 3_dex2jar/**/*.class")  ## dex2jar
-   puts $p_jad+" -o -r -sjava -d"+@app_workspace+"/4_jad/ "+@app_workspace+"3_dex2jar/**/*.class"
-# jad -o -r -sjava -d./4_jad 3_dex2jar/**/*.class
+   puts " --- Unzip APK"
+   system($p_unzip+" "+@app_file+" -d "+@app_workspace+"/1_unzip/ > /dev/null 2>&1")  ## Unzip
+   puts " --- Baksmaling APK"
+   system("java -jar "+$p_apktool+" d "+@app_file+" "+@app_workspace+"/2_apktool/ > /dev/null 2>&1")  ## apktool
+   puts " --- Decompile APK"
+   system($p_dex2jar+" "+@app_file+" > /dev/null 2>&1")  ## dex2jar
+   puts " --- Extract Class file"
+   system($p_unzip+" "+@app_workspace+"/"+@app_time+"_"+@app_package.strip+"_dex2jar.jar"+" -d "+@app_workspace+"/3_dex2jar/ > /dev/null 2>&1")  ## Unzip
+   puts " --- Extract Java code"
+   system($p_jad+" -o -r -sjava -d"+@app_workspace+"/4_jad/ 3_dex2jar/**/*.class > /dev/null 2>&1")  ## dex2jar
  end
  def returnFile()
    puts @app_file
@@ -128,13 +134,18 @@ else if(ARGV[0] == "-a" or ARGV[0] == "--apk")
   i=0
   while(i<ARGV.size-1)
     app[i].scan_info() # Scan App Default Info
-    app[i].returnFile()
+    puts "[START] Analysis to ".red+app[i].getpackage().yellow
+#    app[i].returnFile()
+    puts "[INFO] Start Basic Analysis".green
     app[i].make_work() # Decompile + Unzip
+    puts "[INFO] Start Pattern Scan".green
     sscan(app[i].getworkspace+"/2_apktool/",app[i].getstrlist_addr()) # Scan smali code
     sscan(app[i].getworkspace+"/4_jad/",app[i].getstrlist_addr()) # Scan java code
     Dir.chdir("../")
+    puts "[INFO] Generate Report".green
     generate_report(app[i])
-    puts "[FINISH] :: "+app[i].getpackage()
+    puts "[INFO] Report finish".green
+    puts "[FINISH] :: ".red+app[i].getpackage().red
     i+=1
   end
 else if(ARGV[0] == "-p" or ARGV[0] == "--pentest")

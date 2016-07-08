@@ -6,8 +6,10 @@ def sscan(path,array)
  pattern=""
  index=0 
 
+ puts " --- Load pattern file"
  dicFile = File.open($p_sfilter).read
  dicFile.gsub!(/\r\n?/, "\n")
+ puts " --- Scan pattern"
  dicFile.each_line do |fline|
  index = fline.index(":")
  type = fline[0..index-1]
@@ -18,5 +20,6 @@ def sscan(path,array)
  array[1].push(stdout)
  end
  end # file open
+ puts " --- End pattern scan"
 end
 

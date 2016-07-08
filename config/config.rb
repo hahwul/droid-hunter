@@ -14,3 +14,5 @@ $p_grep = "/bin/grep"
 $p_unzip = "/usr/bin/unzip"
 $p_sfilter = File.dirname(__FILE__)+"/../string_filter"
 
+# Miltiple Library
+require 'colorize'   # gem install colorize

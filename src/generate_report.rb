@@ -44,7 +44,7 @@ def generate_report(app_pointer)
  f = File.open(File.dirname(__FILE__)+"/../template/report_template.html","r")
  report_html = f.read()
  report_html.insert(report_html.index("<!-- {report} -->")+24,table_html)   # ^ is checking string 
- puts report_html
+# puts report_html
  wf = File.open(app_pointer.getdirectory+".html","w")
  wf.puts report_html
  wf.close
