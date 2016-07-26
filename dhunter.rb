@@ -28,6 +28,7 @@ def help()
   puts "   => dhunter --pentest device"
 end
 # ==================================================
+# APK Class
 class App
  def initialize(file)
    @app_file = file
@@ -116,6 +117,15 @@ class App
    puts @app_strlist
  end
 end
+
+# Android Class
+class AndroidDevice
+ def initialize(id)
+   @adevice_id = id
+ end
+end
+
+
 # ==================================================
 banner()
   
@@ -160,6 +170,7 @@ else if(ARGV[0] == "-a" or ARGV[0] == "--apk")
   end
 else if(ARGV[0] == "-p" or ARGV[0] == "--pentest")
   puts "Pentest Module"
+  device = AndroidDevice.new(ARGV[i])
 
 else
   puts "Not supported commmand"
