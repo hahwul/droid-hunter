@@ -2,6 +2,8 @@ require File.dirname(__FILE__)+"/config/config.rb"  #Include Config File
 require File.dirname(__FILE__)+"/src/sscan.rb"  #Include Scan
 require File.dirname(__FILE__)+"/src/generate_report.rb"  #Include Report
 
+version = "2.0"
+
 def banner()
 puts "      .---.        .-----------"
 puts "     /     \\  __  /    ------"
@@ -19,13 +21,16 @@ def help()
   puts "Usage: ruby dhunter.rb [APK]"
   puts "Command"
   puts "-a, --apk : Analysis android APK file."
-  puts "-p, --pentest : Penetration testing Device"
-  puts " - APK Analysis"
+  puts " + APK Analysis"
   puts "   => dhunter -a 123.apk[apk file]"
   puts "   => dhunter --apk 123.apk aaa.apk test.apk hwul.apk"
-  puts " - Pentest Android"
+  puts "-p, --pentest : Penetration testing Device"
+  puts " + Pentest Android"
   puts "   => dhunter -p device[device code]"
   puts "   => dhunter --pentest device"
+  puts "-v, --version : Show this droid-hunter version"
+  puts "-h, --help : Show help page"
+  
 end
 # ==================================================
 # APK Class
@@ -139,6 +144,10 @@ if(ARGV[0] == "-u" or ARGV[0] == "--update")
 else if(ARGV[0] == "-h" or ARGV[0] == "--help")
   help()
   exit()
+
+else if(ARGV[0] == "-v" or ARGV[0] == "--version")
+  puts "version is droid-hunter "+version
+  exit()
   
 else if(ARGV.size < 2)
   help()
@@ -179,4 +188,4 @@ end
 end
 end
 end
-
+end
