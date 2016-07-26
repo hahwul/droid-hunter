@@ -17,6 +17,8 @@ end
 
 def generate_report(app_pointer)
  report_html=""
+ top_html =""
+ Dir.mkdir(app_pointer.getdirectory+"/report")
  workspace = app_pointer.getworkspace
  report=[["App.Package",app_pointer.getpackage],
 ["App.File_path",app_pointer.getfile],
@@ -41,12 +43,25 @@ def generate_report(app_pointer)
  table=Table.new(report)
  table_html = table.html #puts table.html
  
+ ### Detail Report - information
  f = File.open(File.dirname(__FILE__)+"/../template/report_template.html","r")
  report_html = f.read()
  report_html.insert(report_html.index("<!-- {report} -->")+24,table_html)   # ^ is checking string 
-# puts report_html
- wf = File.open(app_pointer.getdirectory+".html","w")
+ wf = File.open(app_pointer.getdirectory+"/report/intro.html","w")
  wf.puts report_html
  wf.close
+ f.close
+ 
+ ### Main Report
+ f = File.open(File.dirname(__FILE__)+"/../template/report_top_template.html","r")
+ top_html = f.read()
+ top_html.insert(top_html.index("{report}"),"./"+app_pointer.getdirectory+"/report/intro.html?")
+ top_html.insert(top_html.index("//script"),"var appdir='"+app_pointer.getdirectory+"';")
+ wf = File.open(app_pointer.getdirectory+".html","w")
+ wf.puts top_html
+ wf.close
+ f.close
+ 
+ 
 end
 

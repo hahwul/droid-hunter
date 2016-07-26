@@ -118,12 +118,22 @@ class App
 end
 # ==================================================
 banner()
-if(ARGV.size < 2)
-  help()
-  exit()
+  
+if(ARGV[0] == "-u" or ARGV[0] == "--update")
+  puts "Update Module"
+  puts "[INF] Update droid-hunter"
+  Dir.chdir(File.dirname(__FILE__))
+  system("git pull -v")
+  puts "[FIN] Updated droid-hunter"
+
 else if(ARGV[0] == "-h" or ARGV[0] == "--help")
   help()
   exit()
+  
+else if(ARGV.size < 2)
+  help()
+  exit()
+
 else if(ARGV[0] == "-a" or ARGV[0] == "--apk")
   i=1
   app = Array.new
@@ -150,11 +160,12 @@ else if(ARGV[0] == "-a" or ARGV[0] == "--apk")
   end
 else if(ARGV[0] == "-p" or ARGV[0] == "--pentest")
   puts "Pentest Module"
+
 else
   puts "Not supported commmand"
 end
 end
 end
 end
-
+end
 
