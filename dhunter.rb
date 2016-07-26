@@ -121,10 +121,10 @@ banner()
   
 if(ARGV[0] == "-u" or ARGV[0] == "--update")
   puts "Update Module"
-  puts "[INF] Update droid-hunter"
+  puts "[INF] Update droid-hunter".green
   Dir.chdir(File.dirname(__FILE__))
   system("git pull -v")
-  puts "[FIN] Updated droid-hunter"
+  puts "[FIN] Updated droid-hunter".red
 
 else if(ARGV[0] == "-h" or ARGV[0] == "--help")
   help()

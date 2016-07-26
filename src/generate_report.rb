@@ -42,7 +42,7 @@ def generate_report(app_pointer)
 ]
  table=Table.new(report)
  table_html = table.html #puts table.html
- 
+ puts " --- generate information part".green
  ### Detail Report - information
  f = File.open(File.dirname(__FILE__)+"/../template/report_template.html","r")
  report_html = f.read()
@@ -51,7 +51,7 @@ def generate_report(app_pointer)
  wf.puts report_html
  wf.close
  f.close
- 
+ puts " --- generate main report".green
  ### Main Report
  f = File.open(File.dirname(__FILE__)+"/../template/report_top_template.html","r")
  top_html = f.read()
