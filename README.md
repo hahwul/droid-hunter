@@ -40,14 +40,15 @@ C. Run DROID-HUNTER<br>
     Usage: ruby dhunter.rb [APK]
     Command
     -a, --apk : Analysis android APK file.
-    -p, --pentest : Penetration testing Device
-     - APK Analysis
+     + APK Analysis
        => dhunter -a 123.apk[apk file]
        => dhunter --apk 123.apk aaa.apk test.apk hwul.apk
-     - Pentest Android
+    -p, --pentest : Penetration testing Device
+     + Pentest Android
        => dhunter -p device[device code]
        => dhunter --pentest device
-
+    -v, --version : Show this droid-hunter version
+    -h, --help : Show help page
 
 ## 4. Support
 Contact hahwul@gmail.com
