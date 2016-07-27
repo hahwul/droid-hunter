@@ -55,4 +55,4 @@ Contact hahwul@gmail.com
 <br>
 
 ## 5. Screen shot
-<img src="https://cloud.githubusercontent.com/assets/13212227/15714903/6d143802-2857-11e6-9136-d960bc74a869.png">
+<img src="https://cloud.githubusercontent.com/assets/13212227/17181679/e8b9b448-545b-11e6-9bb9-ee1cc2f5e28b.png">
