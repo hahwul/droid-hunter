@@ -9,4 +9,7 @@ echo ' -> set command'
 MYPWD=`pwd`
 echo '#/usr/bin/ruby
 ruby '$MYPWD'/dhunter.rb $*' >> /usr/bin/dhunter
+echo 'Set perm'
+chmod 755 /usr/bin/dhunter
+
 echo 'Finish. run a dhunter'
