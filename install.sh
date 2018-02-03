@@ -8,7 +8,7 @@ gem install colorize
 echo ' -> set command'
 MYPWD=`pwd`
 echo '#/usr/bin/ruby
-ruby '$MYPWD'/dhunter.rb $*' >> /usr/bin/dhunter
+ruby '$MYPWD'/dhunter.rb $*' > /usr/bin/dhunter
 echo 'Set perm'
 chmod 755 /usr/bin/dhunter
 
