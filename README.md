@@ -73,6 +73,11 @@ Bug: Add issue(github)<br>
 Contact: hahwul@gmail.com<br>
 <br>
 
-## 5. Screen shot
+## 5. TO-DO List
+> Add Vulnerability Scanning module<br>
+> Update string pattern<br>
+> Intent diagram<br>
+<br>
+## 6. Screen shot
 <img src="https://cloud.githubusercontent.com/assets/13212227/17181679/e8b9b448-545b-11e6-9bb9-ee1cc2f5e28b.png">
 <img src="https://cloud.githubusercontent.com/assets/13212227/17219286/cae365d4-5525-11e6-82c8-ccf9d135f3e2.png">
