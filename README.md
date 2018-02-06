@@ -69,8 +69,8 @@ D. Run DROID-HUNTER<br>
     -h, --help : Show help page
 
 ## 4. Support
-Bug: Add issue(github)
-Contact: hahwul@gmail.com
+Bug: Add issue(github)<br>
+Contact: hahwul@gmail.com<br>
 <br>
 
 ## 5. Screen shot
