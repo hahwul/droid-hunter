@@ -1,4 +1,4 @@
-Vulnerability:addJavascript
+Vulnerability:addJavascriptInterface
 Key-SecretKeySpec:SecretKeySpec
 Key-Base64:Base64.encodeToString
 Key-Base64:Base64.Base64InputStream
