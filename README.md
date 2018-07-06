@@ -1,3 +1,4 @@
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <img src="https://cloud.githubusercontent.com/assets/13212227/26283637/397918c4-3e67-11e7-9026-21c16e0b3759.png">
 
 
