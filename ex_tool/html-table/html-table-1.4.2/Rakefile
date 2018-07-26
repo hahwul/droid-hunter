@@ -2,54 +2,54 @@ require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 
-CLEAN.include("**/*.gem", "**/*.rbc")
+CLEAN.include('**/*.gem', '**/*.rbc')
 
 namespace :gem do
   desc 'Build the html-table gem'
-  task :create => [:clean] do
+  task create: [:clean] do
     require 'rubygems/package'
     spec = eval(IO.read('html-table.gemspec'))
     spec.signing_key = File.join(Dir.home, '.ssh', 'gem-private_key.pem')
     Gem::Package.build(spec, true)
   end
 
-  desc "Install the html-table package as a gem"
-  task :install => [:create] do
-    file = Dir["*.gem"].first
+  desc 'Install the html-table package as a gem'
+  task install: [:create] do
+    file = Dir['*.gem'].first
     sh "gem install -l #{file}"
   end
 end
 
 namespace 'example' do
-   desc "Run the first simple html-table example"
-   task :simple1 do
-      sh 'ruby -Ilib examples/simple1.rb'
-   end
+  desc 'Run the first simple html-table example'
+  task :simple1 do
+    sh 'ruby -Ilib examples/simple1.rb'
+  end
 
-   desc "Run the second simple html-table example"
-   task :simple2 do
-      sh 'ruby -Ilib examples/simple2.rb'
-   end
+  desc 'Run the second simple html-table example'
+  task :simple2 do
+    sh 'ruby -Ilib examples/simple2.rb'
+  end
 
-   desc "Run the third simple html-table example"
-   task :simple3 do
-      sh 'ruby -Ilib examples/simple3.rb'
-   end
+  desc 'Run the third simple html-table example'
+  task :simple3 do
+    sh 'ruby -Ilib examples/simple3.rb'
+  end
 
-   desc "Run the first intermediate html-table example"
-   task :intermediate1 do
-      sh 'ruby -Ilib examples/intermediate1.rb'
-   end
+  desc 'Run the first intermediate html-table example'
+  task :intermediate1 do
+    sh 'ruby -Ilib examples/intermediate1.rb'
+  end
 
-   desc "Run the second intermediate html-table example"
-   task :intermediate2 do
-      sh 'ruby -Ilib examples/intermediate2.rb'
-   end
+  desc 'Run the second intermediate html-table example'
+  task :intermediate2 do
+    sh 'ruby -Ilib examples/intermediate2.rb'
+  end
 
-   desc "Run the advanced html-table example"
-   task :advanced do
-      sh 'ruby -Ilib examples/advanced.rb'
-   end
+  desc 'Run the advanced html-table example'
+  task :advanced do
+    sh 'ruby -Ilib examples/advanced.rb'
+  end
 end
 
 Rake::TestTask.new do |t|
@@ -57,7 +57,7 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
-namespace 'test' do 
+namespace 'test' do
   Rake::TestTask.new('attribute_handler') do |t|
     t.warning = true
     t.verbose = true
@@ -143,4 +143,4 @@ namespace 'test' do
   end
 end
 
-task :default => :test
+task default: :test

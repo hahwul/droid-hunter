@@ -1,2 +1,2 @@
-gem 'html-table'
 gem 'colorize'
+gem 'html-table'

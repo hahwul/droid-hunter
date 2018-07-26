@@ -1,5 +1,4 @@
 module HTML
-
   # This class represents an HTML Caption.  Despite the name, it is not
   # a subclass of Table.  Note that end tags for this class are mandatory.
   #
@@ -31,15 +30,15 @@ module HTML
     # Returns the number of spaces that tags for this class are indented.
     # For the Table::Caption class, the indention level defaults to 3.
     #
-    def self.indent_level
-      @indent_level
+    class << self
+      attr_reader :indent_level
     end
 
     # Sets the number of spaces that tags for this class are indented.
     #
     def self.indent_level=(num)
-      expect(num,Integer)
-      raise ArgumentError, "indent level must be >= 0" if num < 0
+      expect(num, Integer)
+      raise ArgumentError, 'indent level must be >= 0' if num < 0
       @indent_level = num
     end
 

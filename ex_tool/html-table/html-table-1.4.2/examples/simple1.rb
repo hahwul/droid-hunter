@@ -8,32 +8,30 @@
 require 'html/table'
 include HTML
 
-table = Table.new{ |t|
-   t.content = [
-      %w/foo bar baz/,
-      %w/1 2 3/,
-      %w/hello world/
-   ]
-}
+table = Table.new do |t|
+  t.content = [
+    %w[foo bar baz],
+    %w[1 2 3],
+    %w[hello world]
+  ]
+end
 
 puts table.html
 
-=begin
-### OUTPUT ###
-<table>
-   <tr>
-      <td>foo</td>
-      <td>bar</td>
-      <td>baz</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-   </tr>
-   <tr>
-      <td>hello</td>
-      <td>world</td>
-   </tr>
-</table>
-=end
+# ### OUTPUT ###
+# <table>
+#    <tr>
+#       <td>foo</td>
+#       <td>bar</td>
+#       <td>baz</td>
+#    </tr>
+#    <tr>
+#       <td>1</td>
+#       <td>2</td>
+#       <td>3</td>
+#    </tr>
+#    <tr>
+#       <td>hello</td>
+#       <td>world</td>
+#    </tr>
+# </table>

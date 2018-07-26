@@ -15,24 +15,24 @@ Table::Row::Header.end_tags = false
 
 # Demonstrates the DSL style syntax
 table = Table.new do
-   border      1
-   cellspacing 0
-   cellpadding 0
-   rules       'groups'
+  border      1
+  cellspacing 0
+  cellpadding 0
+  rules       'groups'
 end
 
 # Demonstrates the use of setters after object creation
 caption = Table::Caption.new
-caption.align = "bottom"
-caption.content = "Kumquat versus a poked eye, by gender"
+caption.align = 'bottom'
+caption.content = 'Kumquat versus a poked eye, by gender'
 
 thead = Table::Head.create
 tbody = Table::Body.new
 tfoot = Table::Foot.create
 
 # Add a row with a td and th, then configure after the fact.
-thead.push Table::Row.new{ |r|
-   r.content = Table::Row::Data.new, Table::Row::Header.new
+thead.push Table::Row.new { |r|
+  r.content = Table::Row::Data.new, Table::Row::Header.new
 }
 
 # And again, longhand
@@ -43,45 +43,45 @@ hrow.push h1, h2
 thead.push hrow
 
 # Configure a row after the fact
-thead.configure(0,0){ |d|
-   d.colspan = 2
-   d.rowspan = 2
-}
+thead.configure(0, 0) do |d|
+  d.colspan = 2
+  d.rowspan = 2
+end
 
-thead.configure(0,1){ |h|
-   h.colspan = 2
-   h.align   = "center"
-   h.content = "Preference"
-}
+thead.configure(0, 1) do |h|
+  h.colspan = 2
+  h.align   = 'center'
+  h.content = 'Preference'
+end
 
 # Ugly, but just to show you that it's possible
 tbody.push(
-   Table::Row.new{ |r|
-      r.align = "center"
-      r.content = 
-         Table::Row::Header.new{ |h|
-            h.rowspan = 2
-            h.content = "Gender"
-         },
-         Table::Row::Header.new{ |h| h.content = "Male" },
-         "73%",
-         "27%"
-   }
+  Table::Row.new do |r|
+    r.align = 'center'
+    r.content =
+      Table::Row::Header.new do |h|
+        h.rowspan = 2
+        h.content = 'Gender'
+      end,
+      Table::Row::Header.new { |h| h.content = 'Male' },
+      '73%',
+      '27%'
+  end
 )
 
-brow = Table::Row.new{ |r| r.align = "center" }
+brow = Table::Row.new { |r| r.align = 'center' }
 bheader = Table::Row::Header.new('Female')
-brow.push(bheader,"16%","84%")
+brow.push(bheader, '16%', '84%')
 
 tbody.push(brow)
 
-frow = Table::Row.new{ |r|
-   r.content = Table::Row::Data.new{ |d|
-      d.colspan = 4
-      d.align   = "center"
-      d.content = "Note: eye pokes did not result in permanent injury"
-   }
-}
+frow = Table::Row.new do |r|
+  r.content = Table::Row::Data.new { |d|
+    d.colspan = 4
+    d.align   = 'center'
+    d.content = 'Note: eye pokes did not result in permanent injury'
+  }
+end
 
 tfoot[0] = frow
 
@@ -92,37 +92,35 @@ table.push caption
 
 puts table.html
 
-=begin
-### OUTPUT ###
-<table border=1 cellspacing=0 cellpadding=0 rules='groups'>
-   <caption align='bottom'>Kumquat versus a poked eye, by gender</caption>
-   <thead>
-   <tr>
-      <td colspan=2 rowspan=2>
-      <th colspan=2 align='center'>Preference
-   </tr>
-   <tr>
-      <th>Eating Kumquats
-      <th>Poke In The Eye
-   </tr>
-   </thead>
-   <tbody>
-   <tr align='center'>
-      <th rowspan=2>Gender
-      <th>Male
-      <td>73%
-      <td>27%
-   </tr>
-   <tr align='center'>
-      <th>Female
-      <td>16%
-      <td>84%
-   </tr>
-   </tbody>
-   <tfoot>
-   <tr>
-      <td colspan=4 align='center'>Note: eye pokes did not result in permanent injury
-   </tr>
-   </tfoot>
-</table>
-=end
+# ### OUTPUT ###
+# <table border=1 cellspacing=0 cellpadding=0 rules='groups'>
+#    <caption align='bottom'>Kumquat versus a poked eye, by gender</caption>
+#    <thead>
+#    <tr>
+#       <td colspan=2 rowspan=2>
+#       <th colspan=2 align='center'>Preference
+#    </tr>
+#    <tr>
+#       <th>Eating Kumquats
+#       <th>Poke In The Eye
+#    </tr>
+#    </thead>
+#    <tbody>
+#    <tr align='center'>
+#       <th rowspan=2>Gender
+#       <th>Male
+#       <td>73%
+#       <td>27%
+#    </tr>
+#    <tr align='center'>
+#       <th>Female
+#       <td>16%
+#       <td>84%
+#    </tr>
+#    </tbody>
+#    <tfoot>
+#    <tr>
+#       <td colspan=4 align='center'>Note: eye pokes did not result in permanent injury
+#    </tr>
+#    </tfoot>
+# </table>

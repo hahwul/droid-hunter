@@ -113,9 +113,9 @@ module TagHandler
     end_tag = "</#{tag}>"
 
     if bool
-      self.replace(begin_tag << self << end_tag)
+      replace(begin_tag << self << end_tag)
     else
-      self.replace(self.gsub(/#{begin_tag}|#{end_tag}/,''))
+      replace(gsub(/#{begin_tag}|#{end_tag}/, ''))
     end
   end
 end

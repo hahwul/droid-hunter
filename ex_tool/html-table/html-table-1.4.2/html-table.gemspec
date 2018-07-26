@@ -9,16 +9,16 @@ Gem::Specification.new do |spec|
   spec.homepage   = 'http://github.com/djberg96/html-table'
   spec.summary    = 'A Ruby interface for generating HTML tables'
   spec.test_files = Dir['test/*.rb']
-  spec.files      = Dir['**/*'].reject{ |f| f.include?('git') }
+  spec.files      = Dir['**/*'].reject { |f| f.include?('git') }
   spec.cert_chain = ['certs/djberg96_pub.pem']
 
-  spec.extra_rdoc_files  = ['README', 'CHANGES'] + Dir['doc/*.rdoc']
+  spec.extra_rdoc_files = %w[README CHANGES] + Dir['doc/*.rdoc']
 
   spec.add_dependency('strongtyping')
   spec.add_dependency('structured_warnings')
 
-  spec.add_development_dependency('test-unit')
   spec.add_development_dependency('rake')
+  spec.add_development_dependency('test-unit')
 
   spec.description = <<-EOF
     The html-table library provides an interface for generating HTML tables

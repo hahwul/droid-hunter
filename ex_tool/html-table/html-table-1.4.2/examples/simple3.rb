@@ -11,31 +11,29 @@ require 'html/table'
 include HTML
 
 m = [
-   ['foo', 'bar', 'baz'],
-   [1, 2, 3],
-   ['hello', 'world']
+  %w[foo bar baz],
+  [1, 2, 3],
+  %w[hello world]
 ]
 
 table = Table.new(m)
 
 puts table.html
 
-=begin
-### OUTPUT ###
-<table>
-   <tr>
-      <td>foo</td>
-      <td>bar</td>
-      <td>baz</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-   </tr>
-   <tr>
-      <td>hello</td>
-      <td>world</td>
-   </tr>
-</table>
-=end
+# ### OUTPUT ###
+# <table>
+#    <tr>
+#       <td>foo</td>
+#       <td>bar</td>
+#       <td>baz</td>
+#    </tr>
+#    <tr>
+#       <td>1</td>
+#       <td>2</td>
+#       <td>3</td>
+#    </tr>
+#    <tr>
+#       <td>hello</td>
+#       <td>world</td>
+#    </tr>
+# </table>

@@ -1,5 +1,4 @@
 module HTML
-
   # This class represents an HTML table header (<th>).  Despite the name
   # it is not a subclass of Table or Table::Row.
   #
@@ -33,16 +32,16 @@ module HTML
     # Returns the indentation level for the tags of this class.  The
     # default is 6.
     #
-    def self.indent_level
-      @indent_level
+    class << self
+      attr_reader :indent_level
     end
 
     # Sets the indentation level for the tags of this class.  The default
     # is 6.
     #
     def self.indent_level=(num)
-      expect(num,Integer)
-      raise ArgumentError,"indent_level must be >= 0" if num < 0
+      expect(num, Integer)
+      raise ArgumentError, 'indent_level must be >= 0' if num < 0
       @indent_level = num
     end
 
@@ -58,7 +57,7 @@ module HTML
     # valid arguments.
     #
     def self.end_tags=(bool)
-      expect(bool,[TrueClass,FalseClass])
+      expect(bool, [TrueClass, FalseClass])
       @end_tags = bool
     end
   end
