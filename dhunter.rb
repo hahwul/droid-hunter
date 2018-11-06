@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/config/config.rb' # Include Config File
 require File.dirname(__FILE__) + '/src/sscan.rb' # Include Scan
+require File.dirname(__FILE__) + '/src/vscan.rb' # Include vScan
 require File.dirname(__FILE__) + '/src/generate_report.rb' # Include Report
 
 version = '2.0'
@@ -37,10 +38,13 @@ class App
   def initialize(file)
     @app_file = file
     @app_perm = ''
+    @app_sdk = ''
+    @app_manifest = ''
     @app_feature = ''
     @app_main = ''
     @app_package = ''
     @app_workspace = ''
+    @app_vuln = Hash.new
     @app_strlist = Array.new(2)
     for i in (0..2)
       @app_strlist[i] = []
@@ -54,15 +58,15 @@ class App
           @app_package = line[14..-1]
           @app_package = @app_package[0..@app_package.index(' ')]
           @app_package = @app_package.delete("'")
-        else if line.include? 'uses-permission:'
-               @app_perm += line[16..-1]
-               @app_perm = @app_perm.delete("'")
-             else if line.include? 'launchable-activity: name='
-                    @app_main = line[26..-1]
-                    @app_main = @app_main[0..@app_main.index(' ')]
-                    @app_main = @app_main.delete("'")
-        end
-        end
+        elsif line.include? 'sdkVersion'
+          @app_sdk = @apk_sdk.to_s + line
+        elsif line.include? 'uses-permission:'
+          @app_perm += line[16..-1]
+          @app_perm = @app_perm.delete("'")
+        elsif line.include? 'launchable-activity: name='
+          @app_main = line[26..-1]
+          @app_main = @app_main[0..@app_main.index(' ')]
+          @app_main = @app_main.delete("'")
         end
       end
     end
@@ -84,6 +88,10 @@ class App
     system($p_unzip + ' ' + @app_file + ' -d ' + @app_workspace + '/1_unzip/ > /dev/null 2>&1') ## Unzip
     puts ' --- Baksmaling APK'
     system('java -jar ' + $p_apktool + ' d ' + @app_file + ' -o ' + @app_workspace + '/2_apktool/ > /dev/null 2>&1') ## apktool
+    af = File.open(@app_workspace + '/2_apktool/AndroidManifest.xml')
+    @app_manifest = af.read()
+    @app_manifest = @app_manifest.gsub('<','&lt;')
+    @app_manifest = @app_manifest.gsub('>','&gt;')
     puts ' --- Decompile APK'
     system($p_dex2jar + ' ' + @app_file + ' > /dev/null 2>&1') ## dex2jar
     puts ' --- Extract Class file'
@@ -102,6 +110,18 @@ class App
 
   def getdirectory
     @app_time + '_' + @app_package.strip
+  end
+
+  def getmanifest
+    @app_manifest
+  end
+
+  def setvuln key,value
+    @app_vuln[key] = value
+  end
+
+  def getvuln
+    @app_vuln
   end
 
   def getperm
@@ -179,6 +199,8 @@ else if (ARGV[0] == '-h') || (ARGV[0] == '--help')
                         puts '[INFO] Start Pattern Scan'.green
                         sscan(app[i].getworkspace + '/2_apktool/', app[i].getstrlist_addr) # Scan smali code
                         sscan(app[i].getworkspace + '/4_jad/', app[i].getstrlist_addr) # Scan java code
+                        puts '[INFO] Start Vulnerability Scanning..'.green
+                        vscan(app[i])
                         Dir.chdir('../')
                         puts '[INFO] Generate Report'.green
                         generate_report(app[i])

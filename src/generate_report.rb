@@ -24,6 +24,8 @@ def generate_report(app_pointer)
             ['App.File_path', app_pointer.getfile],
             ['App.Main', app_pointer.getmain],
             ['App.Permission', app_pointer.getperm.gsub('android.', '<br>android.')],
+            ['App.Manifest', "<pre><code class='xml'>"+app_pointer.getmanifest+"</code></pre>"],
+            ['Vulnerability', app_pointer.getvuln],
             ['App.Decompile', "<table>
             <tr>
              <td>UNZIP: Analysis of native code, resources , etc.</td><td><a href='file:#{workspace}/1_unzip/' target='_blank' style='color: red'>go link</a></td>
