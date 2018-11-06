@@ -83,7 +83,7 @@ class App
     puts ' --- Unzip APK'
     system($p_unzip + ' ' + @app_file + ' -d ' + @app_workspace + '/1_unzip/ > /dev/null 2>&1') ## Unzip
     puts ' --- Baksmaling APK'
-    system('java -jar ' + $p_apktool + ' d ' + @app_file + ' ' + @app_workspace + '/2_apktool/ > /dev/null 2>&1') ## apktool
+    system('java -jar ' + $p_apktool + ' d ' + @app_file + ' -o ' + @app_workspace + '/2_apktool/ > /dev/null 2>&1') ## apktool
     puts ' --- Decompile APK'
     system($p_dex2jar + ' ' + @app_file + ' > /dev/null 2>&1') ## dex2jar
     puts ' --- Extract Class file'
